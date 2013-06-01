@@ -22,77 +22,85 @@ Instaparse's README convinced me that I could do this.
 
 ## Demo
 
-    (def sample-markup "# A quick demo
+~~~ clojure
+(def sample-markup "# A quick demo
 
-    - A
-    - B
-    - C
+- A
+- B
+- C
 
-    ## Grocery list
+## Grocery list
 
-    1. Apricots
-    2. Bananas
+1. Apricots
+2. Bananas
 
-    ~~~ clojure
-    (+ 1 2)
-    ~~~
+--- clojure
+(+ 1 2)
+---
 
-    ")
+")
+~~~
     
 Parses into this klobbdown tree:
     
-    (markup-to-tree sample-markup)
+~~~ clojure
+(markup-to-tree sample-markup)
 
-    ([:heading "#" "A quick demo"]
-     [:unordered-list
-      [:unordered-item "A"]
-      [:unordered-item "B"]
-      [:unordered-item "C"]]
-     [:heading "##" "Grocery list"]
-     [:ordered-list 
-      [:ordered-item "Apricots"] 
-      [:ordered-item "Bananas"]]
-     [:pre-code 
-      [:lang "clojure"] 
-      [:codetext "(+ 1 2)"]])
-    
+([:heading "#" "A quick demo"]
+ [:unordered-list
+  [:unordered-item "A"]
+  [:unordered-item "B"]
+  [:unordered-item "C"]]
+ [:heading "##" "Grocery list"]
+ [:ordered-list 
+  [:ordered-item "Apricots"] 
+  [:ordered-item "Bananas"]]
+ [:pre-code 
+  [:lang "clojure"] 
+  [:codetext "(+ 1 2)"]])
+~~~
+
 And then into this Hiccup tree:
 
-    (tree-to-hiccup (markup-to-tree sample-markup))
+~~~ clojure
+(tree-to-hiccup (markup-to-tree sample-markup))
 
-    ([:h1 "A quick demo"]
-     [:ul 
-      [:li "A"] 
-      [:li "B"] 
-      [:li "C"]]
-     [:h2 "Grocery list"]
-     [:ol 
-      [:li "Apricots"] 
-      [:li "Bananas"]]
-     [:pre 
-      [:code 
-       [:codetext "(+ 1 2)"]]])
+([:h1 "A quick demo"]
+ [:ul 
+  [:li "A"] 
+  [:li "B"] 
+  [:li "C"]]
+ [:h2 "Grocery list"]
+ [:ol 
+  [:li "Apricots"] 
+  [:li "Bananas"]]
+ [:pre 
+  [:code 
+   [:codetext "(+ 1 2)"]]])
+~~~
        
 And then into this HTML tree:
 
-    (to-html sample-markup)
+~~~ clojure
+(to-html sample-markup)
     
-    <h1>A quick demo</h1>
-    <ul>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-    </ul>
-    <h2>Grocery list</h2>
-    <ol>
-      <li>Apricots</li>
-      <li>Bananas</li>
-    </ol>
-    <pre>
-      <code>
-        (+ 1 2)
-      </code>
-    </pre>" 
+"<h1>A quick demo</h1>
+ <ul>
+   <li>A</li>
+   <li>B</li>
+   <li>C</li>
+ </ul>
+ <h2>Grocery list</h2>
+ <ol>
+   <li>Apricots</li>
+   <li>Bananas</li>
+ </ol>
+ <pre>
+   <code>
+     (+ 1 2)
+   </code>
+ </pre>"
+~~~
 
 ## License
 
